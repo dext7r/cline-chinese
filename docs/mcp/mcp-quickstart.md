@@ -1,46 +1,46 @@
-# 🚀 MCP Quickstart Guide
+# 🚀 MCP 快速入门指南
 
-## ❓ What's an MCP Server?
+## ❓ 什么是 MCP 服务器？
 
-Think of MCP servers as special helpers that give Cline extra powers! They let Cline do cool things like fetch web pages or work with your files.
+把 MCP 服务器想象成给 Cline 提供超能力的特殊助手！它们能让 Cline 完成很酷的任务，比如获取网页内容或操作您的文件。
 
-## ⚠️ IMPORTANT: System Requirements
+## ⚠️ 重要：系统要求
 
-STOP! Before proceeding, you MUST verify these requirements:
+请停下！在继续之前，您必须确认满足以下要求：
 
-### Required Software
+### 必备软件
 
--   ✅ Latest Node.js (v18 or newer)
+-   ✅ 最新版 Node.js (v18 或更高版本)
 
-    -   Check by running: `node --version`
-    -   Install from: <https://nodejs.org/>
+    -   检查方法：运行 `node --version`
+    -   安装地址：<https://nodejs.org/>
 
--   ✅ Latest Python (v3.8 or newer)
+-   ✅ 最新版 Python (v3.8 或更高版本)
 
-    -   Check by running: `python --version`
-    -   Install from: <https://python.org/>
+    -   检查方法：运行 `python --version`
+    -   安装地址：<https://python.org/>
 
--   ✅ UV Package Manager
-    -   After installing Python, run: `pip install uv`
-    -   Verify with: `uv --version`
+-   ✅ UV 包管理器
+    -   安装 Python 后运行：`pip install uv`
+    -   验证方法：`uv --version`
 
-❗ If any of these commands fail or show older versions, please install/update before continuing!
+❗ 如果以上任何命令失败或显示旧版本，请先安装/更新再继续！
 
-⚠️ If you run into other errors, see the "Troubleshooting" section below.
+⚠️ 如果遇到其他错误，请查看下方的"故障排除"部分。
 
-## 🎯 Quick Steps (Only After Requirements Are Met!)
+## 🎯 快速步骤（仅在满足要求后执行！）
 
-### 1. 🛠️ Install Your First MCP Server
+### 1. 🛠️ 安装您的第一个 MCP 服务器
 
-1. From the Cline extension, click the `MCP Server` tab
-1. Click the `Edit MCP Settings` button
+1. 在 Cline 扩展中，点击 `MCP Server` 标签页
+1. 点击 `Edit MCP Settings` 按钮
 
- <img src="https://github.com/user-attachments/assets/abf908b1-be98-4894-8dc7-ef3d27943a47" alt="MCP Server Panel" width="400" />
+ <img src="https://github.com/user-attachments/assets/abf908b1-be98-4894-8dc7-ef3d27943a47" alt="MCP 服务器面板" width="400" />
 
-1. The MCP settings files should be display in a tab in VS Code.
-1. Replace the file's contents with this code:
+1. MCP 设置文件将在 VS Code 的标签页中显示
+1. 将文件内容替换为以下代码：
 
-For Windows:
+Windows 系统：
 
 ```json
 {
@@ -53,7 +53,7 @@ For Windows:
 }
 ```
 
-For Mac and Linux:
+Mac 和 Linux 系统：
 
 ```json
 {
@@ -66,39 +66,39 @@ For Mac and Linux:
 }
 ```
 
-After saving the file:
+保存文件后：
 
-1. Cline will detect the change automatically
-2. The MCP installer will be downloaded and installed
-3. Cline will start the MCP installer
-4. You'll see the server status in Cline's MCP settings UI:
+1. Cline 会自动检测变更
+2. MCP 安装程序将被下载并安装
+3. Cline 将启动 MCP 安装程序
+4. 您将在 Cline 的 MCP 设置界面看到服务器状态：
 
-<img src="https://github.com/user-attachments/assets/2abbb3de-e902-4ec2-a5e5-9418ed34684e" alt="MCP Server Panel with Installer" width="400" />
+<img src="https://github.com/user-attachments/assets/2abbb3de-e902-4ec2-a5e5-9418ed34684e" alt="带安装程序的 MCP 服务器面板" width="400" />
 
-## 🤔 What Next?
+## 🤔 接下来做什么？
 
-Now that you have the MCP installer, you can ask Cline to add more servers from:
+现在您已经有了 MCP 安装程序，可以要求 Cline 从以下位置添加更多服务器：
 
-1. NPM Registry: <https://www.npmjs.com/search?q=%40modelcontextprotocol>
-2. Python Package Index: <https://pypi.org/search/?q=mcp+server-&o=>
+1. NPM 仓库：<https://www.npmjs.com/search?q=%40modelcontextprotocol>
+2. Python 包索引：<https://pypi.org/search/?q=mcp+server-&o=>
 
-For example, you can ask Cline to install the `mcp-server-fetch` package found on the Python Package Index:
+例如，您可以要求 Cline 安装 Python 包索引中的 `mcp-server-fetch` 包：
 
 ```bash
-"install the MCP server named `mcp-server-fetch`
-- ensure the mcp settings are updated.
-- use uvx or python to run the server."
+"安装名为 `mcp-server-fetch` 的 MCP 服务器
+- 确保更新 mcp 设置
+- 使用 uvx 或 python 运行服务器"
 ```
 
-You should witness Cline:
+您将看到 Cline：
 
-1. Install the `mcp-server-fetch` python package
-1. Update the mcp setting json file
-1. Start the server and start the server
+1. 安装 `mcp-server-fetch` python 包
+1. 更新 mcp 设置 json 文件
+1. 启动服务器
 
-The mcp settings file should now look like this:
+此时 mcp 设置文件应如下所示：
 
-_For a Windows machine:_
+Windows 系统：
 
 ```json
 {
@@ -115,37 +115,37 @@ _For a Windows machine:_
 }
 ```
 
-You you can always check the status of your server by going to clients MCP server tab. See the image above
+您随时可以通过访问客户端的 MCP 服务器标签页来检查服务器状态。参见上图。
 
-That's it! 🎉 You've just given Cline some awesome new abilities!
+就是这样！🎉 您刚刚赋予了 Cline 一些强大的新能力！
 
-## 📝 Troubleshooting
+## 📝 故障排除
 
-### 1. I'm Using `asdf` and Get "unknown command: npx"
+### 1. 使用 `asdf` 时出现"unknown command: npx"错误
 
-There is some slightly bad news. You should still be able to get things to work, but will have to do a bit more manual work unless MCP server packaging evolves a bit. One option is to uninstall `asdf` , but we will assume you do not want to do that.
+有个不太好的消息。除非 MCP 服务器打包方式有所改进，否则您需要手动完成更多工作才能使其正常运行。一个选择是卸载 `asdf`，但我们假设您不想这么做。
 
-Instead, you will need to follow the instructions above to "Edit MCP Settings". Then, as [this post](https://dev.to/cojiroooo/mcp-using-node-on-asdf-382n) describes, you need to add and "env" entry to each server's configs.
+相反，您需要按照上述说明"编辑 MCP 设置"。然后，如[这篇文章](https://dev.to/cojiroooo/mcp-using-node-on-asdf-382n)所述，您需要为每个服务器配置添加"env"条目。
 
 ```json
 "env": {
-        "PATH": "/Users/<user_name>/.asdf/shims:/usr/bin:/bin",
-        "ASDF_DIR": "<path_to_asdf_bin_dir>",
-        "ASDF_DATA_DIR": "/Users/<user_name>/.asdf",
-        "ASDF_NODEJS_VERSION": "<your_node_version>"
+        "PATH": "/Users/<用户名>/.asdf/shims:/usr/bin:/bin",
+        "ASDF_DIR": "<asdf_bin目录路径>",
+        "ASDF_DATA_DIR": "/Users/<用户名>/.asdf",
+        "ASDF_NODEJS_VERSION": "<您的node版本>"
       }
 ```
 
-The `path_to_asdf_bin_dir` can often be found in your shell config (e.g. `.zshrc`). If you are using Homebrew, you can use `echo ${HOMEBREW_PREFIX}` to find the start of the directory and then append `/opt/asdf/libexec`.
+`asdf_bin目录路径`通常可以在您的 shell 配置文件中找到（如 `.zshrc`）。如果使用 Homebrew，可以运行 `echo ${HOMEBREW_PREFIX}` 查找目录起始位置，然后追加 `/opt/asdf/libexec`。
 
-Now for some good news. While not perfect, you can get Cline to do this for you fairly reliably for subsequent server install. Add the following to your "Custom Instructions" in the Cline settings (top-right toolbar button):
+现在有个好消息。虽然不完美，但对于后续服务器安装，您可以相当可靠地让 Cline 自动完成此操作。在 Cline 设置的"自定义指令"中添加以下内容（右上角工具栏按钮）：
 
-> When installing MCP servers and editing the cline_mcp_settings.json, if the server requires use of `npx` as the command, you must copy the "env" entry from the "mcp-installer" entry and add it to the new entry. This is vital to getting the server to work properly when in use.
+> 当安装 MCP 服务器并编辑 cline_mcp_settings.json 时，如果服务器需要使用 `npx` 作为命令，您必须从"mcp-installer"条目中复制"env"条目并添加到新条目中。这对服务器正常使用至关重要。
 
-### 2. I'm Still Getting an Error When I Run the MCP Installer
+### 2. 运行 MCP 安装程序时仍然报错
 
-If you're getting an error when you run the MCP installer, you can try the following:
+如果运行 MCP 安装程序时仍然报错，可以尝试以下方法：
 
--   Check the MCP settings file for errors
--   Read the MCP server's documentation to ensure the MCP setting file is using the correct command and arguments. 👈
--   Use a terminal and run the command with its arguments directly. This will allow you to see the same errors that Cline is seeing.
+-   检查 MCP 设置文件是否有错误
+-   阅读 MCP 服务器文档，确保 MCP 设置文件使用了正确的命令和参数 👈
+-   在终端中直接运行带参数的命令。这样您就能看到 Cline 遇到的相同错误。

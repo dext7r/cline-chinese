@@ -1,74 +1,74 @@
-# Building Custom MCP Servers From Scratch Using Cline: A Comprehensive Guide
+# 使用Cline从零开始构建自定义MCP服务器的完整指南
 
-This guide provides a comprehensive walkthrough of building a custom MCP (Model Context Protocol) server from scratch, leveraging the powerful AI capabilities of Cline. The example used will be building a "GitHub Assistant Server" to illustrate the process.
+本指南将详细介绍如何利用Cline强大的人工智能能力，从零开始构建自定义MCP（模型上下文协议）服务器。我们将以构建"GitHub助手服务器"为例来说明整个过程。
 
-## Understanding MCP and Cline's Role in Building Servers
+## 理解MCP及Cline在服务器构建中的作用
 
-### What is MCP?
+### 什么是MCP？
 
-The Model Context Protocol (MCP) acts as a bridge between large language models (LLMs) like Claude and external tools and data. MCP consists of two key components:
+模型上下文协议(MCP)充当了Claude等大型语言模型(LLM)与外部工具和数据之间的桥梁。MCP包含两个关键组件：
 
--   **MCP Hosts:** These are applications that integrate with LLMs, such as Cline, Claude Desktop, and others.
--   **MCP Servers:** These are small programs specifically designed to expose data or specific functionalities to the LLMs through the MCP.
+-   **MCP主机**：这些是与LLM集成的应用程序，如Cline、Claude桌面版等。
+-   **MCP服务器**：这些是专门设计的小型程序，用于通过MCP向LLM暴露数据或特定功能。
 
-This setup is beneficial when you have an MCP-compliant chat interface, like Claude Desktop, which can then leverage these servers to access information and execute actions.
+这种架构非常有用，特别是当你拥有像Claude桌面版这样的MCP兼容聊天界面时，它就可以利用这些服务器来访问信息和执行操作。
 
-### Why Use Cline to Create MCP Servers?
+### 为什么要使用Cline创建MCP服务器？
 
-Cline streamlines the process of building and integrating MCP servers by utilizing its AI capabilities to:
+Cline通过利用其AI能力简化了MCP服务器的构建和集成过程：
 
--   **Understand Natural Language Instructions:** You can communicate with Cline in a way that feels natural, making the development process intuitive and user-friendly.
--   **Clone Repositories:** Cline can directly clone existing MCP server repositories from GitHub, simplifying the process of using pre-built servers.
--   **Build Servers:** Once the necessary code is in place, Cline can execute commands like `npm run build` to compile and prepare the server for use.
--   **Handle Configuration:** Cline manages the configuration files required for the MCP server, including adding the new server to the `cline_mcp_settings.json` file.
--   **Assist with Troubleshooting:** If errors arise during development or testing, Cline can help identify the cause and suggest solutions, making debugging easier.
+-   **理解自然语言指令**：你可以用自然的方式与Cline交流，使开发过程直观且用户友好。
+-   **克隆代码库**：Cline可以直接从GitHub克隆现有的MCP服务器代码库，简化使用预构建服务器的过程。
+-   **构建服务器**：一旦代码准备就绪，Cline可以执行如`npm run build`等命令来编译和准备服务器。
+-   **处理配置**：Cline管理MCP服务器所需的配置文件，包括将新服务器添加到`cline_mcp_settings.json`文件中。
+-   **协助故障排除**：如果在开发或测试过程中出现错误，Cline可以帮助识别原因并提供解决方案，使调试更轻松。
 
-## Building a GitHub Assistant Server Using Cline: A Step-by-Step Guide
+## 使用Cline构建GitHub助手服务器：分步指南
 
-This section demonstrates how to create a GitHub Assistant server using Cline. This server will be able to interact with GitHub data and perform useful actions:
+本节将演示如何使用Cline创建一个GitHub助手服务器。该服务器将能够与GitHub数据交互并执行有用操作：
 
-### 1. Defining the Goal and Initial Requirements
+### 1. 定义目标和初始需求
 
-First, you need to clearly communicate to Cline the purpose and functionalities of your server:
+首先，你需要向Cline清楚地传达你的服务器目的和功能：
 
--   **Server Goal:** Inform Cline that you want to build a "GitHub Assistant Server". Specify that this server will interact with GitHub data and potentially mention the types of data you are interested in, like issues, pull requests, and user profiles.
--   **Access Requirements:** Let Cline know that you need to access the GitHub API. Explain that this will likely require a personal access token (GITHUB_TOKEN) for authentication.
--   **Data Specificity (Optional):** You can optionally tell Cline about specific fields of data you want to extract from GitHub, but this can also be determined later as you define the server's tools.
+-   **服务器目标**：告诉Cline你想构建一个"GitHub助手服务器"。说明该服务器将与GitHub数据交互，并可以提及你感兴趣的数据类型，如问题、拉取请求和用户资料。
+-   **访问要求**：让Cline知道你需要访问GitHub API。解释这可能需要个人访问令牌(GITHUB_TOKEN)进行身份验证。
+-   **数据特异性(可选)**：你可以选择性地告诉Cline你想从GitHub提取的特定数据字段，但这也可以在定义服务器工具时确定。
 
-### 2. Cline Initiates the Project Setup
+### 2. Cline启动项目设置
 
-Based on your instructions, Cline starts the project setup process:
+根据你的指令，Cline开始项目设置过程：
 
--   **Project Structure:** Cline might ask you for a name for your server. Afterward, it uses the MCP `create-server` tool to generate the basic project structure for your GitHub Assistant server. This usually involves creating a new directory with essential files like `package.json`, `tsconfig.json`, and a `src` folder for your TypeScript code. \
--   **Code Generation:** Cline generates starter code for your server, including:
-    -   **File Handling Utilities:** Functions to help with reading and writing files, commonly used for storing data or logs. \
-    -   **GitHub API Client:** Code to interact with the GitHub API, often using libraries like `@octokit/graphql`. Cline will likely ask for your GitHub username or the repositories you want to work with. \
-    -   **Core Server Logic:** The basic framework for handling requests from Cline and routing them to the appropriate functions, as defined by the MCP. \
--   **Dependency Management:** Cline analyzes the code and identifies necessary dependencies, adding them to the `package.json` file. For example, interacting with the GitHub API will likely require packages like `@octokit/graphql`, `graphql`, `axios`, or similar. \
--   **Dependency Installation:** Cline executes `npm install` to download and install the dependencies listed in `package.json`, ensuring your server has all the required libraries to function correctly. \
--   **Path Corrections:** During development, you might move files or directories around. Cline intelligently recognizes these changes and automatically updates file paths in your code to maintain consistency.
--   **Configuration:** Cline will modify the `cline_mcp_settings.json` file to add your new GitHub Assistant server. This will include:
-    -   **Server Start Command:** Cline will add the appropriate command to start your server (e.g., `npm run start` or a similar command).
-    -   **Environment Variables:** Cline will add the required `GITHUB_TOKEN` variable. Cline might ask you for your GitHub personal access token, or it might guide you to safely store it in a separate environment file. \
--   **Progress Documentation:** Throughout the process, Cline keeps the "Memory Bank" files updated. These files document the project's progress, highlighting completed tasks, tasks in progress, and pending tasks.
+-   **项目结构**：Cline可能会询问你服务器的名称。之后，它使用MCP的`create-server`工具为你的GitHub助手服务器生成基本项目结构。这通常包括创建一个新目录，其中包含`package.json`、`tsconfig.json`等基本文件，以及用于TypeScript代码的`src`文件夹。
+-   **代码生成**：Cline为你的服务器生成起始代码，包括：
+    -   **文件处理工具**：帮助读写文件的函数，通常用于存储数据或日志。
+    -   **GitHub API客户端**：与GitHub API交互的代码，通常使用`@octokit/graphql`等库。Cline可能会询问你的GitHub用户名或你想使用的代码库。
+    -   **核心服务器逻辑**：处理来自Cline的请求并将其路由到适当函数的基本框架，由MCP定义。
+-   **依赖管理**：Cline分析代码并识别必要的依赖项，将它们添加到`package.json`文件中。例如，与GitHub API交互可能需要`@octokit/graphql`、`graphql`、`axios`等包。
+-   **依赖安装**：Cline执行`npm install`以下载并安装`package.json`中列出的依赖项，确保你的服务器拥有所有必需的库来正常运行。
+-   **路径修正**：在开发过程中，你可能会移动文件或目录。Cline智能地识别这些变化，并自动更新代码中的文件路径以保持一致性。
+-   **配置**：Cline将修改`cline_mcp_settings.json`文件以添加你的新GitHub助手服务器。这将包括：
+    -   **服务器启动命令**：Cline将添加适当的命令来启动你的服务器(例如`npm run start`或类似命令)。
+    -   **环境变量**：Cline将添加所需的`GITHUB_TOKEN`变量。Cline可能会询问你的GitHub个人访问令牌，或指导你将其安全地存储在单独的环境文件中。
+-   **进度文档**：在整个过程中，Cline保持"记忆库"文件更新。这些文件记录了项目的进展，突出显示已完成的任务、进行中的任务和待处理的任务。
 
-### 3. Testing the GitHub Assistant Server
+### 3. 测试GitHub助手服务器
 
-Once Cline has completed the setup and configuration, you are ready to test the server's functionality:
+当Cline完成设置和配置后，你就可以测试服务器的功能了：
 
--   **Using Server Tools:** Cline will create various "tools" within your server, representing actions or data retrieval functions. To test, you would instruct Cline to use a specific tool. Here are examples related to GitHub:
-    -   **`get_issues`:** To test retrieving issues, you might say to Cline, "Cline, use the `get_issues` tool from the GitHub Assistant Server to show me the open issues from the 'cline/cline' repository." Cline would then execute this tool and present you with the results.
-    -   **`get_pull_requests`:** To test pull request retrieval, you could ask Cline to "use the `get_pull_requests` tool to show me the merged pull requests from the 'facebook/react' repository from the last month." Cline would execute this tool, using your GITHUB_TOKEN to access the GitHub API, and display the requested data. \
--   **Providing Necessary Information:** Cline might prompt you for additional information required to execute the tool, such as the repository name, specific date ranges, or other filtering criteria.
--   **Cline Executes the Tool:** Cline handles the communication with the GitHub API, retrieves the requested data, and presents it in a clear and understandable format.
+-   **使用服务器工具**：Cline将在你的服务器中创建各种"工具"，代表操作或数据检索功能。要测试，你可以指示Cline使用特定工具。以下是GitHub相关示例：
+    -   **`get_issues`**：要测试检索问题，你可以对Cline说："Cline，使用GitHub助手服务器中的`get_issues`工具，向我展示'cline/cline'代码库中的开放问题。"Cline将执行此工具并呈现结果。
+    -   **`get_pull_requests`**：要测试拉取请求检索，你可以要求Cline"使用`get_pull_requests`工具显示'facebook/react'代码库上个月合并的拉取请求。"Cline将执行此工具，使用你的GITHUB_TOKEN访问GitHub API，并显示请求的数据。
+-   **提供必要信息**：Cline可能会提示你执行工具所需的额外信息，如代码库名称、特定日期范围或其他筛选条件。
+-   **Cline执行工具**：Cline处理与GitHub API的通信，检索请求的数据，并以清晰易懂的格式呈现。
 
-### 4. Refining the Server and Adding More Features
+### 4. 优化服务器并添加更多功能
 
-Development is often iterative. As you work with your GitHub Assistant Server, you'll discover new functionalities to add, or ways to improve existing ones. Cline can assist in this ongoing process:
+开发通常是一个迭代过程。当你使用GitHub助手服务器时，你会发现需要添加新功能或改进现有功能。Cline可以协助这一持续过程：
 
--   **Discussions with Cline:** Talk to Cline about your ideas for new tools or improvements. For example, you might want a tool to `create_issue` or to `get_user_profile`. Discuss the required inputs and outputs for these tools with Cline.
--   **Code Refinement:** Cline can help you write the necessary code for new features. Cline can generate code snippets, suggest best practices, and help you debug any issues that arise.
--   **Testing New Functionalities:** After adding new tools or functionalities, you would test them again using Cline, ensuring they work as expected and integrate well with the rest of the server.
--   **Integration with Other Tools:** You might want to integrate your GitHub Assistant server with other tools. For instance, in the "github-cline-mcp" source, Cline assists in integrating the server with Notion to create a dynamic dashboard that tracks GitHub activity. \
+-   **与Cline讨论**：与Cline讨论你关于新工具或改进的想法。例如，你可能想要一个`create_issue`工具或`get_user_profile`工具。与Cline讨论这些工具所需的输入和输出。
+-   **代码优化**：Cline可以帮助你编写新功能所需的代码。Cline可以生成代码片段，建议最佳实践，并帮助你调试出现的问题。
+-   **测试新功能**：添加新工具或功能后，你可以再次使用Cline进行测试，确保它们按预期工作并与服务器的其余部分良好集成。
+-   **与其他工具集成**：你可能希望将GitHub助手服务器与其他工具集成。例如，在"github-cline-mcp"源代码中，Cline协助将服务器与Notion集成，创建一个跟踪GitHub活动的动态仪表板。
 
-By following these steps, you can create a custom MCP server from scratch using Cline, leveraging its powerful AI capabilities to streamline the entire process. Cline not only assists with the technical aspects of building the server but also helps you think through the design, functionalities, and potential integrations.
+通过遵循这些步骤，你可以使用Cline从零开始创建自定义MCP服务器，利用其强大的AI能力来简化整个过程。Cline不仅协助构建服务器的技术方面，还帮助你思考设计、功能和潜在集成。

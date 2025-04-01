@@ -1,54 +1,54 @@
-### .clineignore Support
+### .clineignore 支持
 
-To give you more control over which files are accessible to Cline, we've implemented `.clineignore` functionality, similar to `.gitignore`. This allows you to specify files and directories that Cline should **not** access or process. This is useful for:
+为了给您更多控制权来决定 Cline 可以访问哪些文件，我们实现了类似 `.gitignore` 的 `.clineignore` 功能。这允许您指定 Cline **不应**访问或处理的文件和目录。这在以下场景中非常有用：
 
-*   **Privacy:** Preventing Cline from accessing sensitive or private files in your workspace.
-*   **Performance:**  Excluding large directories or files that are irrelevant to your tasks, potentially improving the efficiency of Cline.
-*   **Context Management:**  Focusing Cline's attention on the relevant parts of your project.
+*   **隐私保护**：防止 Cline 访问工作区中的敏感或私有文件
+*   **性能优化**：排除与任务无关的大型目录或文件，可能提升 Cline 的运行效率
+*   **上下文管理**：将 Cline 的注意力集中在项目的相关部分
 
-**How to use `.clineignore`**
+**如何使用 `.clineignore`**
 
-1.  **Create a `.clineignore` file:** In the root directory of your workspace (the same level as your `.vscode` folder, or the top level folder you opened in VS Code), create a new file named `.clineignore`.
+1.  **创建 `.clineignore` 文件**：在您工作区的根目录（与 `.vscode` 文件夹同级，或您在 VS Code 中打开的顶级文件夹）中创建一个名为 `.clineignore` 的新文件
 
-2.  **Define ignore patterns:** Open the `.clineignore` file and specify the patterns for files and directories you want Cline to ignore. The syntax is the same as `.gitignore`:
+2.  **定义忽略规则**：打开 `.clineignore` 文件并指定您希望 Cline 忽略的文件和目录模式。语法与 `.gitignore` 相同：
 
-    *   Each line in the file represents a pattern.
-    *   **Standard glob patterns are supported:**
-        *   `*` matches zero or more characters
-        *   `?` matches one character
-        *   `[]` matches a character range
-        *   `**` matches any number of directories and subdirectories.
+    *   文件中的每一行代表一个模式
+    *   **支持标准 glob 模式**：
+        *   `*` 匹配零个或多个字符
+        *   `?` 匹配一个字符
+        *   `[]` 匹配字符范围
+        *   `**` 匹配任意数量的目录和子目录
 
-    *   **Directory patterns:** Append `/` to the end of a pattern to specify a directory.
-    *   **Negation patterns:** Start a pattern with `!` to negate (un-ignore) a previously ignored pattern.
-    *   **Comments:** Start a line with `#` to add comments.
+    *   **目录模式**：在模式末尾添加 `/` 来指定目录
+    *   **否定模式**：在模式前加 `!` 来取消之前忽略的模式
+    *   **注释**：以 `#` 开头的行会作为注释
 
-    **Example `.clineignore` file:**
+    **示例 `.clineignore` 文件**：
 
     ```
-    # Ignore log files
+    # 忽略日志文件
     *.log
 
-    # Ignore the entire 'node_modules' directory
+    # 忽略整个 'node_modules' 目录
     node_modules/
 
-    # Ignore all files in the 'temp' directory and its subdirectories
+    # 忽略 'temp' 目录及其子目录中的所有文件
     temp/**
 
-    # But DO NOT ignore 'important.log' even if it's in the root
+    # 但不要忽略根目录下的 'important.log' 文件
     !important.log
 
-    # Ignore any file named 'secret.txt' in any subdirectory
+    # 忽略任何子目录中名为 'secret.txt' 的文件
     **/secret.txt
     ```
 
-3.  **Cline respects your `.clineignore`:** Once you save the `.clineignore` file, Cline will automatically recognize and apply these rules.
+3.  **Cline 会遵守您的 `.clineignore`**：保存 `.clineignore` 文件后，Cline 会自动识别并应用这些规则
 
-    *   **File Access Control:** Cline will not be able to read the content of ignored files using tools like `read_file`. If you attempt to use a tool on an ignored file, Cline will inform you that access is blocked due to `.clineignore` settings.
-    *   **File Listing:** When you ask Cline to list files in a directory (e.g., using `list_files`), ignored files and directories will still be listed, but they will be marked with a **🔒** symbol next to their name to indicate that they are ignored. This helps you understand which files Cline can and cannot interact with.
+    *   **文件访问控制**：Cline 将无法使用 `read_file` 等工具读取被忽略文件的内容。如果您尝试对被忽略文件使用工具，Cline 会告知您由于 `.clineignore` 设置导致访问被阻止
+    *   **文件列表**：当您要求 Cline 列出目录中的文件（例如使用 `list_files` 时），被忽略的文件和目录仍会被列出，但会在名称旁显示 **🔒** 符号，表示这些内容已被忽略。这有助于您了解 Cline 可以与哪些文件交互
 
-4.  **Dynamic Updates:** Cline monitors your `.clineignore` file for changes. If you modify, create, or delete your `.clineignore` file, Cline will automatically update its ignore rules without needing to restart VS Code or the extension.
+4.  **动态更新**：Cline 会监控您的 `.clineignore` 文件变更。如果您修改、创建或删除 `.clineignore` 文件，Cline 会自动更新忽略规则，无需重启 VS Code 或扩展
 
-**In Summary**
+**总结**
 
-The `.clineignore` file provides a powerful and flexible way to control Cline's access to your workspace files, enhancing privacy, performance, and context management. By leveraging familiar `.gitignore` syntax, you can easily tailor Cline's focus to the most relevant parts of your projects.
+`.clineignore` 文件提供了一种强大而灵活的方式来控制 Cline 对工作区文件的访问，增强了隐私保护、性能优化和上下文管理能力。通过利用熟悉的 `.gitignore` 语法，您可以轻松地将 Cline 的注意力集中在项目中最相关的部分。

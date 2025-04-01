@@ -1,26 +1,26 @@
 graph TB
-    subgraph VSCode Extension Host
-        subgraph Core Extension
-            ExtensionEntry[Extension Entry<br/>src/extension.ts]
+    subgraph VSCode 扩展宿主
+        subgraph 核心扩展
+            ExtensionEntry[扩展入口点<br/>src/extension.ts]
             ClineProvider[ClineProvider<br/>src/core/webview/ClineProvider.ts]
-            ClineClass[Cline Class<br/>src/core/Cline.ts]
-            GlobalState[VSCode Global State]
-            SecretsStorage[VSCode Secrets Storage]
+            ClineClass[Cline 类<br/>src/core/Cline.ts]
+            GlobalState[VSCode 全局状态]
+            SecretsStorage[VSCode 密钥存储]
         end
 
-        subgraph Webview UI
-            WebviewApp[React App<br/>webview-ui/src/App.tsx]
-            ExtStateContext[ExtensionStateContext<br/>webview-ui/src/context/ExtensionStateContext.tsx]
-            ReactComponents[React Components]
+        subgraph Webview 界面
+            WebviewApp[React 应用<br/>webview-ui/src/App.tsx]
+            ExtStateContext[扩展状态上下文<br/>webview-ui/src/context/ExtensionStateContext.tsx]
+            ReactComponents[React 组件]
         end
 
-        subgraph Storage
-            TaskStorage[Task Storage<br/>Per-Task Files & History]
-            CheckpointSystem[Git-based Checkpoints]
+        subgraph 存储系统
+            TaskStorage[任务存储<br/>每个任务的文件和历史记录]
+            CheckpointSystem[基于 Git 的检查点]
         end
     end
 
-    %% Core Extension Data Flow
+    %% 核心扩展数据流
     ExtensionEntry --> ClineProvider
     ClineProvider --> ClineClass
     ClineClass --> GlobalState
@@ -28,11 +28,11 @@ graph TB
     ClineClass --> TaskStorage
     ClineClass --> CheckpointSystem
 
-    %% Webview Data Flow
+    %% Webview 数据流
     WebviewApp --> ExtStateContext
     ExtStateContext --> ReactComponents
 
-    %% Bidirectional Communication
+    %% 双向通信
     ClineProvider <-->|postMessage| ExtStateContext
 
     style GlobalState fill:#ff0066,stroke:#333,stroke-width:2px,color:#ffffff

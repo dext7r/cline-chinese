@@ -1,1 +1,1 @@
-See [https://cline.bot/privacy](https://cline.bot/privacy) for our privacy policy.
+请参阅 [https://cline.bot/privacy](https://cline.bot/privacy) 了解我们的隐私政策。
